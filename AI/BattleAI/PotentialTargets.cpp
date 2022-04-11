@@ -13,9 +13,7 @@
 
 PotentialTargets::PotentialTargets(const battle::Unit * attacker, const HypotheticBattle * state)
 {
-	auto attIter = state->stackStates.find(attacker->unitId());
-	const battle::Unit * attackerInfo = (attIter == state->stackStates.end()) ? attacker : attIter->second.get();
-
+	auto attackerInfo = state->battleGetUnitByID(attacker->unitId());
 	auto reachability = state->getReachability(attackerInfo);
 	auto avHexes = state->battleGetAvailableHexes(reachability, attackerInfo);
 
